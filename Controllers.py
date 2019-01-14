@@ -6,7 +6,7 @@ coding : UTF-8
 """
 from PyQt5.QtWidgets import QApplication
 from Views import TreeDialog, MainWindow
-from Models import TreeItem
+from Models import StoryItem
 
 
 # Functions for convenience
@@ -19,6 +19,7 @@ class MainController:
     def __init__(self):
         self.window = MainWindow()
         self.connect_actions()
+        self.current_file = None
 
     def connect_actions(self):
         # Toggle tree
@@ -45,7 +46,7 @@ class MainController:
             self.window.scn_tree.hide()
 
     def tree_clicked(self):
-        print('tree clicked')
+        pass
 
     def change_tab(self):
         if self.window.edit.tab.currentIndex() == 0:
@@ -56,18 +57,26 @@ class MainController:
     def add_tree_item(self):
         dialog = TreeDialog(self.window)
         dialog.show()
+        dialog.setFixedSize(dialog.size())
 
     def new_file(self):
-        print('new')
+        pass
 
     def open_file(self):
-        print('open')
+        pass
 
     def save_file(self):
-        print('save')
+        pass
 
     def change_font(self):
-        print('font')
+        pass
+
+    # Text controlling
+    def text_to_xml(self):
+        pass
+
+    def xml_to_text(self):
+        pass
 
 
 if __name__ == "__main__":

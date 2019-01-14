@@ -10,11 +10,12 @@ from PyQt5.QtWidgets import QTextEdit
 from PyQt5.QtWidgets import QTabWidget
 from PyQt5.QtWidgets import QTreeWidget
 from PyQt5.QtWidgets import QDockWidget
-from PyQt5.QtWidgets import QHBoxLayout, QBoxLayout
+from PyQt5.QtWidgets import QHBoxLayout, QBoxLayout, QFormLayout
 from PyQt5.QtWidgets import QAction
-from PyQt5.QtWidgets import QPushButton
+from PyQt5.QtWidgets import QPushButton, QRadioButton
 from PyQt5.QtWidgets import QToolBar
 from PyQt5.QtWidgets import QDialog
+from PyQt5.QtWidgets import QLineEdit
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt, QSize
 
@@ -68,7 +69,7 @@ class SceneTree(QDockWidget):
         self.tree = QTreeWidget()
         self.layout.addWidget(self.tree)
         self.layout.setContentsMargins(0, 0, 0, 0)
-
+        # TODO : Delete btn_add and use context menu, which appears when right mouse clicked
         self.btn_add = QPushButton('Add ..')
         self.layout.addWidget(self.btn_add)
 
@@ -79,11 +80,24 @@ class TreeDialog(QDialog):
         super(TreeDialog, self).__init__(parent)
 
         # Initialize dialog UI
-        self.layout = QBoxLayout(QBoxLayout.TopToBottom)
-        self.setLayout(self.layout)
+        self.inner_layout = QFormLayout()
 
-        self.btn = QTextEdit()
-        self.layout.addWidget(self.btn)
+        self.rb_chapter = QRadioButton('장 (Chapter) ')
+        self.rb_scene = QRadioButton('장면 (Scene)')
+
+        self.led_description = QLineEdit()
+        self.led_description.setPlaceholderText('설명')
+
+        self.btn_ok = QPushButton('확인')
+        self.btn_ok.clicked.connect(self.close)
+        self.btn_cancel = QPushButton('취소')
+        self.btn_cancel.clicked.connect(self.close)
+
+        self.inner_layout.addRow(self.rb_chapter, self.rb_scene)
+        self.inner_layout.addRow(self.led_description)
+        self.inner_layout.addRow(self.btn_ok, self.btn_cancel)
+
+        self.setLayout(self.inner_layout)
 
 
 class MainWindow(QMainWindow):
@@ -151,6 +165,3 @@ class MainWindow(QMainWindow):
         self.text_menu.addAction(self.act_font)
         self.text_menu.addSeparator()
         # Text Menu -*->
-
-
-
