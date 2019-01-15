@@ -74,7 +74,7 @@ class MainController:
         pass
 
     # Text controlling
-    def lines_to_xml(self, text, return_type=0):
+    def lines_to_xml(self, text, index, return_type=0):
         """
         <<return type>>
         0 : XML string
