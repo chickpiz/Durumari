@@ -5,8 +5,7 @@ date : 2019/01
 coding : UTF-8
 """
 from PyQt5.QtWidgets import QApplication
-from Views import TreeDialog, MainWindow
-from Models import StoryItem
+from sources.Views import TreeDialog, MainWindow
 
 
 # Functions for convenience
