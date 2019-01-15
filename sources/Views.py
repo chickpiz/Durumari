@@ -21,7 +21,7 @@ from PyQt5.QtCore import Qt, QSize
 
 
 # Functions for convenience
-def set_action(name, icon=None,shortcut=None):
+def set_action(name, icon=None, shortcut=None):
     if icon is None:
         action = QAction(name)
         action.setShortcut(shortcut)
