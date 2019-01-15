@@ -5,7 +5,10 @@ date : 2019/01
 coding : UTF-8
 """
 from PyQt5.QtWidgets import QApplication
-from sources.Views import TreeDialog, MainWindow
+from Views import TreeDialog, MainWindow
+from xml.etree.ElementTree import Element, ElementTree
+import xml.etree.ElementTree as ET
+import re
 
 
 # Functions for convenience
@@ -71,10 +74,21 @@ class MainController:
         pass
 
     # Text controlling
-    def text_to_xml(self):
-        pass
+    def lines_to_xml(self, text, return_type=0):
+        """
+        <<return type>>
+        0 : XML string
+        1 : ElementTree Object (with <scn> root)
+        """
+        char_pat = re.compile('[\n.+:]')
 
-    def xml_to_text(self):
+        lines = text.split('\n')
+        for line in lines:
+            char_mat = char_pat.match()
+            if char_mat is None:
+                des = Element('des')
+
+    def xml_to_lines(self):
         pass
 
 
